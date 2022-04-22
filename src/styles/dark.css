@@ -1,0 +1,6 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-bg-color: var(--color-neutral-10);
+    --text-color: var(--color-neutral-3);
+  }
+}
