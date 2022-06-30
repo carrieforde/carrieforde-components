@@ -1,0 +1,27 @@
+.colors {
+  display: grid;
+  gap: var(--size-5);
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  justify-content: center;
+}
+
+.colorChipColor {
+  background-color: var(--color-chip);
+  border: 1px solid var(--color-neutral-2);
+  height: 150px;
+  width: 200px;
+}
+
+.colorChipName {
+  font-weight: 600;
+  margin: var(--size-2) 0;
+}
+
+.colorChipValue {
+  background-color: var(--color-neutral-1);
+  border: 1px solid var(--color-neutral-2);
+  color: var(--color-neutral-7);
+  font-size: var(--font-size-2);
+  margin: 0;
+  padding: var(--size-1) var(--size-2);
+}

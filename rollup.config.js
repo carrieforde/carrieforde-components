@@ -5,27 +5,37 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 
-const rollupConfig = {
-  input: "src/index.ts",
-  output: [
-    {
-      file: packageJson.main,
+const rollupConfig = [
+  {
+    input: "src/bin/tokens.js",
+    output: {
+      file: packageJson.bin,
       format: "cjs",
-      sourcemap: true,
+      banner: "#!/usr/bin/env node",
     },
-    {
-      file: packageJson.module,
-      format: "esm",
-      sourcemap: true,
-    },
-  ],
-  plugins: [
-    peerDepsExternalPlugin(),
-    resolve(),
-    commonjs(),
-    typescript({ tsconfig: "./tsconfig.json" }),
-    postcss({ extensions: [".css"] }),
-  ],
-};
+  },
+  {
+    input: "src/index.ts",
+    output: [
+      {
+        file: packageJson.main,
+        format: "cjs",
+        sourcemap: true,
+      },
+      {
+        file: packageJson.module,
+        format: "esm",
+        sourcemap: true,
+      },
+    ],
+    plugins: [
+      peerDepsExternalPlugin(),
+      resolve(),
+      commonjs(),
+      typescript({ tsconfig: "./tsconfig.json" }),
+      postcss({ extensions: [".css"] }),
+    ],
+  },
+];
 
 export default rollupConfig;

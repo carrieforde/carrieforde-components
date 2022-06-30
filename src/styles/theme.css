@@ -59,17 +59,17 @@
   --color-warning-2: #fff3c4;
   --color-warning-1: #fffbea;
 
-  /* Colors - Danger */
-  --color-danger-10: #610316;
-  --color-danger-9: #8a041a;
-  --color-danger-8: #ab091e;
-  --color-danger-7: #cf1124;
-  --color-danger-6: #e12d39;
-  --color-danger-5: #ef4e4e;
-  --color-danger-4: #f86a6a;
-  --color-danger-3: #ff9b9b;
-  --color-danger-2: #ffbdbd;
-  --color-danger-1: #ffe3e3;
+  /* Colors - Error */
+  --color-error-10: #610316;
+  --color-error-9: #8a041a;
+  --color-error-8: #ab091e;
+  --color-error-7: #cf1124;
+  --color-error-6: #e12d39;
+  --color-error-5: #ef4e4e;
+  --color-error-4: #f86a6a;
+  --color-error-3: #ff9b9b;
+  --color-error-2: #ffbdbd;
+  --color-error-1: #ffe3e3;
 
   /* Font Sizes */
   --font-size-1: 12px;

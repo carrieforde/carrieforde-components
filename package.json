@@ -4,6 +4,7 @@
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
+  "bin": "./lib/bin/index.js",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.17.9",

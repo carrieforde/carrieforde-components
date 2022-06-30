@@ -1,6 +1,6 @@
 module.exports = {
   extends: ["react-app", "react-app/jest", "plugin:storybook/recommended"],
   rules: {
-    "no-console": 2,
+    "no-console": ["log", { allow: ["error", "warn"] }],
   },
 };
