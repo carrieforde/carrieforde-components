@@ -1,0 +1,4 @@
+.title {
+  font-size: var(--typography-title-font-size, var(--font-size-8));
+  font-weight: var(--typography-title-font-weight, 300);
+}

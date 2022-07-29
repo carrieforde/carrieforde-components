@@ -1,6 +1,6 @@
 import React, { CSSProperties } from "react";
 import s from "./Colors.module.css";
-import COLORS from "../../tokens/colors.json";
+import COLORS from "../../colors.json";
 
 type ColorChipProps = {
   name: string;
