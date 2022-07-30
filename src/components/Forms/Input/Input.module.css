@@ -1,0 +1,25 @@
+.input {
+  border: 1.5px solid;
+  border-color: var(--input-border-color, var(--color-neutral-4));
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: var(--input-font-family, var(--font-family-body));
+  outline: 0;
+  padding: var(--input-padding, var(--size-2));
+  transition: border-color 0.3s ease-in;
+  width: 100%;
+}
+
+.input:focus {
+  border-color: var(--input-border-color-focused, var(--color-primary-8));
+}
+
+.wrapper {
+  flex-basis: 100%;
+}
+
+@media screen and (min-width: 600px) {
+  .split {
+    flex-basis: calc(50% - var(--size-2));
+  }
+}

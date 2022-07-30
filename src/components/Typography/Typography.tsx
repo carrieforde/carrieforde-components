@@ -9,7 +9,7 @@ type BaseTypographyProps = {
 type TypographyProps = {
   className?: string;
   component?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
-  variant?: "title" | "subtitle" | "body" | "overline";
+  variant?: "title" | "subtitle" | "body" | "overline" | "label";
 } & BaseTypographyProps;
 
 export interface TypographyComposition {

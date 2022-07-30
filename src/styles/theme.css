@@ -105,4 +105,16 @@
   /* Font Family */
   --font-family-body: "Libre Franklin", sans-serif;
   --font-family-monospace: "IBM Plex Mono", monospace;
+
+  /* Base Color Palette - Primary */
+  --color-primary: var(--color-primary-8);
+  --color-primary-contrast: #fff;
+  --color-primary-hover: var(--color-primary-6);
+
+  /* Base Color Palette - Secondary */
+  --color-secondary: var(--color-secondary-8);
+  --color-secondary-contrast: #fff;
+  --color-secondary-hover: var(--color-secondary-6);
+  --color-info: var(--color-info-6);
+  --color-error: var(--color-error-8);
 }
