@@ -1,46 +1,28 @@
-import { Typography as ThemeTypography } from "./Typography";
 import React from "react";
-import styles from "./Typography.module.css";
+import { Meta } from "@storybook/react";
+import { Typography } from "./Typography";
 
 export default {
   title: "Typography",
-  component: ThemeTypography,
-};
+} as Meta;
 
-const text = "The quick brown fox jumps over the lazy dog.";
+const text = "The quick brown fox jumped over the lazy dog.";
 
-export const Typography = () => (
-  <>
-    <ThemeTypography>{text}</ThemeTypography>
-  </>
+export const Base = () => <Typography>{text}</Typography>;
+export const Title = () => (
+  <Typography component="h1" variant="title">
+    {text}
+  </Typography>
 );
-
-// export const Paragraph = () => (
-//   <Typography></Typography>
-// );
-
-// export const H1 = () => (
-//   <Typography variant="title" component="h1" className={styles["custom-title"]}>
-//     The quick brown fox jumps over the lazy dog.
-//   </Typography>
-// );
-
-// export const H2 = () => (
-//   <Typography.H2>The quick brown fox jumps over the lazy dog.</Typography.H2>
-// );
-
-// export const H3 = () => (
-//   <Typography.H3>The quick brown fox jumps over the lazy dog.</Typography.H3>
-// );
-
-// export const H4 = () => (
-//   <Typography.H4>The quick brown fox jumps over the lazy dog.</Typography.H4>
-// );
-
-// export const H5 = () => (
-//   <Typography.H5>The quick brown fox jumps over the lazy dog.</Typography.H5>
-// );
-
-// export const H6 = () => (
-//   <Typography.H6>The quick brown fox jumps over the lazy dog.</Typography.H6>
-// );
+export const Subtitle = () => (
+  <Typography variant="subtitle">{text}</Typography>
+);
+export const Body1 = () => (
+  <Typography variant="body1" component="h3">
+    {text}
+  </Typography>
+);
+export const Body2 = () => <Typography variant="body2">{text}</Typography>;
+export const Overline = () => (
+  <Typography variant="overline">{text}</Typography>
+);

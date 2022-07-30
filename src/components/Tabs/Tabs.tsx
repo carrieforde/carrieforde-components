@@ -6,9 +6,12 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { Button } from "../Button/Button";
-import s from "./Tabs.module.css";
-import cn from "classnames";
+import {
+  BaseTabButton,
+  BaseTabList,
+  BaseTabPanel,
+  BaseTabs,
+} from "./Tabs.styles";
 
 type TabsContextProps = {
   activeTab: string;
@@ -49,7 +52,7 @@ export const Tabs: React.FC<TabsProps> & TabsComposition = ({
 
   return (
     <TabsContext.Provider value={{ activeTab, setActiveTab }}>
-      <div className={s.tabs}>{children}</div>
+      <BaseTabs>{children}</BaseTabs>
     </TabsContext.Provider>
   );
 };
@@ -60,9 +63,9 @@ type TabListProps = {
 };
 
 const TabList: React.FC<TabListProps> = ({ ariaLabel, children }) => (
-  <div role="tablist" aria-label={ariaLabel} className={s.tabsList}>
+  <BaseTabList role="tablist" aria-label={ariaLabel}>
     {children}
-  </div>
+  </BaseTabList>
 );
 
 type TabButtonProps = {
@@ -76,12 +79,8 @@ const TabButton: React.FC<TabButtonProps> = ({ id, children }) => {
   const isActive = activeTab === id;
   const handleClick = () => setActiveTab(id);
 
-  const classes = cn(s.tabButton, {
-    [s.tabButtonIsActive]: isActive,
-  });
-
   return (
-    <Button
+    <BaseTabButton
       type="button"
       id={id}
       onClick={handleClick}
@@ -89,10 +88,10 @@ const TabButton: React.FC<TabButtonProps> = ({ id, children }) => {
       aria-selected={isActive}
       tabIndex={-1}
       role="tab"
-      className={classes}
+      active={isActive}
     >
       {children}
-    </Button>
+    </BaseTabButton>
   );
 };
 
@@ -107,15 +106,14 @@ const TabPanel: React.FC<TabPanelProps> = ({ id, children }) => {
   const isActive = activeTab === id;
 
   return (
-    <div
+    <BaseTabPanel
       id={`${id}-panel`}
       role="tabpanel"
       aria-labelledby={id}
       hidden={!isActive}
-      className={s.tabPanel}
     >
       {children}
-    </div>
+    </BaseTabPanel>
   );
 };
 

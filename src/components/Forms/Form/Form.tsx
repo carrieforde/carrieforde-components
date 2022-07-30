@@ -7,7 +7,7 @@ import React, {
   useContext,
   useState,
 } from "react";
-import styles from "./Form.module.css";
+import { BaseForm, FormActions } from "./Form.styles";
 
 //ordina-jworks.github.io/architecture/2021/02/12/react-generic-context.html
 export type FormValues<T = unknown> = T;
@@ -56,16 +56,16 @@ export const Form: React.FC<FormProps> = ({
 
   return (
     <FormContext.Provider value={{ initialValues, values, setValues }}>
-      <form
+      <BaseForm
         action="#"
         onSubmit={onSubmit}
         onReset={onReset}
-        className={styles.form}
+        className="form"
       >
         {children}
 
-        <div className={styles.actions}>{actions}</div>
-      </form>
+        <FormActions className="actions">{actions}</FormActions>
+      </BaseForm>
     </FormContext.Provider>
   );
 };

@@ -1,7 +1,3 @@
-import "../src/styles/theme.css";
-import "../src/styles/global.css";
-import "../src/styles/light.css";
-// import "../src/styles/dark.css";
 import React from "react";
 import { ThemeProvider } from "@emotion/react";
 import { buildTheme } from "../src/theme";

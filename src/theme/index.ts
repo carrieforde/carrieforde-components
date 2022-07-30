@@ -5,6 +5,7 @@ export function buildTheme(
   defaultTextColor: string = "#334e68"
 ) {
   return {
+    borderRadius: "4px",
     fontSize: (size: number) => `${size / baseFontSize}rem`,
     spacing: (size: number) => `${size * 8}px`,
     fonts: {

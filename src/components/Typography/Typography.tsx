@@ -1,67 +1,105 @@
-import React, { ReactNode } from "react";
-import cn from "classnames";
-import styles from "./Typography.module.css";
+import React, {
+  forwardRef,
+  HTMLProps,
+  ReactElement,
+  ReactNode,
+  Ref,
+} from "react";
+import {
+  BaseBody1,
+  BaseBody2,
+  BaseOverline,
+  BaseSubtitle,
+  BaseTitle,
+  BaseTypography,
+} from "./Typography.styles";
 
-type BaseTypographyProps = {
-  children: ReactNode;
-};
+type TypographyVariant = "title" | "subtitle" | "body1" | "body2" | "overline";
+
+type TypographyComponent =
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "p"
+  | "span"
+  | "label"
+  | "a";
+
+type TypographyElement =
+  | HTMLParagraphElement
+  | HTMLHeadingElement
+  | HTMLSpanElement
+  | HTMLLabelElement
+  | HTMLAnchorElement;
 
 type TypographyProps = {
-  className?: string;
-  component?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
-  variant?: "title" | "subtitle" | "body" | "overline" | "label";
-} & BaseTypographyProps;
+  children: ReactNode;
+  component?: TypographyComponent;
+  variant?: TypographyVariant;
+  ref?: Ref<TypographyElement>;
+} & HTMLProps<TypographyElement>;
 
-export interface TypographyComposition {
-  H1: React.FC<BaseTypographyProps>;
-  H2: React.FC<BaseTypographyProps>;
-  H3: React.FC<BaseTypographyProps>;
-  H4: React.FC<BaseTypographyProps>;
-  H5: React.FC<BaseTypographyProps>;
-  H6: React.FC<BaseTypographyProps>;
+function getTypographyVariant({
+  variant,
+  children,
+  component,
+  ref,
+}: TypographyProps): ReactElement | null {
+  const map: Record<
+    TypographyVariant,
+    (props: TypographyProps) => ReactElement
+  > = {
+    title: ({ children, component, ref }) => (
+      <BaseTitle as={component ?? "h1"} ref={ref}>
+        {children}
+      </BaseTitle>
+    ),
+    subtitle: ({ children, component, ref }) => (
+      <BaseSubtitle as={component} ref={ref}>
+        {children}
+      </BaseSubtitle>
+    ),
+    body1: ({ children, component, ref }) => (
+      <BaseBody1 as={component} ref={ref}>
+        {children}
+      </BaseBody1>
+    ),
+    body2: ({ children, component, ref }) => (
+      <BaseBody2 as={component} ref={ref}>
+        {children}
+      </BaseBody2>
+    ),
+    overline: ({ children, component, ref }) => (
+      <BaseOverline as={component} ref={ref}>
+        {children}
+      </BaseOverline>
+    ),
+  };
+
+  return variant ? map[variant]({ children, component, ref }) : null;
 }
 
-export const Typography: React.FC<TypographyProps> & TypographyComposition = ({
-  children,
-  className,
-  component = "p",
-  variant,
-}) => {
-  const classes = cn(styles.typography, className, {
-    [styles[variant ?? ""]]: !!variant,
-  });
-  const Element = component;
+export const Typography = forwardRef<TypographyElement, TypographyProps>(
+  ({ children, component, variant }, ref) => {
+    if (variant) {
+      return getTypographyVariant({ children, component, variant, ref });
+    }
 
-  return <Element className={classes}>{children}</Element>;
-};
-
-const H1: React.FC<BaseTypographyProps> = ({ children }) => (
-  <Typography component="h1">{children}</Typography>
+    return <BaseTypography as={component}>{children}</BaseTypography>;
+  }
 );
 
-const H2: React.FC<BaseTypographyProps> = ({ children }) => (
-  <Typography component="h2">{children}</Typography>
-);
+// export const Typography: React.FC<TypographyProps> = ({
+//   children,
+//   component,
+//   variant,
+// }) => {
+//   if (variant) {
+//     return getTypographyVariant({ children, component, variant });
+//   }
 
-const H3: React.FC<BaseTypographyProps> = ({ children }) => (
-  <Typography component="h3">{children}</Typography>
-);
-
-const H4: React.FC<BaseTypographyProps> = ({ children }) => (
-  <Typography component="h4">{children}</Typography>
-);
-
-const H5: React.FC<BaseTypographyProps> = ({ children }) => (
-  <Typography component="h5">{children}</Typography>
-);
-
-const H6: React.FC<BaseTypographyProps> = ({ children }) => (
-  <Typography component="h6">{children}</Typography>
-);
-
-Typography.H1 = H1;
-Typography.H2 = H2;
-Typography.H3 = H3;
-Typography.H4 = H4;
-Typography.H5 = H5;
-Typography.H6 = H6;
+//   return <BaseTypography as={component}>{children}</BaseTypography>;
+// };

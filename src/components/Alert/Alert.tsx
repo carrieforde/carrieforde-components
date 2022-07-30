@@ -1,26 +1,14 @@
 import React, { ReactNode } from "react";
-import s from "./Alert.module.css";
-import cn from "classnames";
+import { BaseAlert, BaseAlertProps } from "./Alert.styles";
 
 export type AlertProps = {
   children: ReactNode;
   icon?: ReactNode;
-  variant?: "default" | "info" | "warning" | "success" | "error";
-};
+} & BaseAlertProps;
 
-export const Alert: React.FC<AlertProps> = ({
-  icon,
-  variant = "default",
-  children,
-}) => {
-  const classes = cn(s.alert, {
-    [s[variant]]: variant,
-  });
-
-  return (
-    <div className={classes}>
-      {icon ?? null}
-      {children}
-    </div>
-  );
-};
+export const Alert: React.FC<AlertProps> = ({ icon, variant, children }) => (
+  <BaseAlert variant={variant}>
+    {icon ?? null}
+    <div>{children}</div>
+  </BaseAlert>
+);
