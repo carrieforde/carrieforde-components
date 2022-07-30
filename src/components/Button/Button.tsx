@@ -1,31 +1,24 @@
-import React, { CSSProperties, forwardRef, HTMLProps } from "react";
-import s from "./Button.module.css";
-import cn from "classnames";
+import React, { FC, ReactNode } from "react";
+import {
+  BaseButton,
+  BaseButtonProps,
+  FilledButton,
+  OutlineButton,
+} from "./Button.styles";
 
-type ButtonProps = {
+export type ButtonProps = {
+  children: ReactNode;
   variant?: "text" | "outline" | "filled";
-  color?: "primary" | "secondary" | "info" | "error";
-} & HTMLProps<HTMLButtonElement>;
+} & BaseButtonProps;
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    { variant = "text", color = "primary", className, children, ...props },
-    ref
-  ) => {
-    const classes = cn(s.button, className, {
-      [s[variant]]: !!variant,
-    });
-
-    const colors = {
-      "--button-color": `var(--color-${color})`,
-      "--button-background": `var(--color-${color})`,
-      "--button-background-hover": `var(--color-${color}-hover)`,
-    } as CSSProperties;
-
-    return (
-      <button {...props} ref={ref} style={colors} className={classes}>
-        {children}
-      </button>
-    );
+export const Button: FC<ButtonProps> = ({ children, variant, ...props }) => {
+  if (variant === "filled") {
+    return <FilledButton {...props}>{children}</FilledButton>;
   }
-);
+
+  if (variant === "outline") {
+    return <OutlineButton {...props}>{children}</OutlineButton>;
+  }
+
+  return <BaseButton {...props}>{children}</BaseButton>;
+};

@@ -1,21 +1,52 @@
-import { Button } from "./Button";
+import { Meta } from "@storybook/react";
 import React from "react";
+import { Color } from "../../theme";
+import { Button } from "./Button";
 
 export default {
   title: "Button",
-  component: Button,
-};
+} as Meta;
 
-export const TextButton = () => <Button color="info">Click Me</Button>;
+function capitalize(text: string) {
+  return [text.charAt(0).toUpperCase(), text.substring(1, text.length)].join(
+    ""
+  );
+}
+
+const colors: Color[] = [
+  "default",
+  "primary",
+  "secondary",
+  "info",
+  "error",
+  "warning",
+  "success",
+];
+
+export const TextButton = () => (
+  <div>
+    {colors.map((color) => (
+      <Button color={color}>{capitalize(color)}</Button>
+    ))}
+  </div>
+);
 
 export const OutlineButton = () => (
-  <Button color="error" variant="outline">
-    Click Me
-  </Button>
+  <div>
+    {colors.map((color) => (
+      <Button variant="outline" color={color}>
+        {capitalize(color)}
+      </Button>
+    ))}
+  </div>
 );
 
 export const FilledButton = () => (
-  <Button color="secondary" variant="filled">
-    Click Me
-  </Button>
+  <div>
+    {colors.map((color) => (
+      <Button variant="filled" color={color}>
+        {capitalize(color)}
+      </Button>
+    ))}
+  </div>
 );
