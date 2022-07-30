@@ -27,7 +27,7 @@ export const Typography: React.FC<TypographyProps> & TypographyComposition = ({
   component = "p",
   variant,
 }) => {
-  const classes = cn(className, {
+  const classes = cn(styles.typography, className, {
     [styles[variant ?? ""]]: !!variant,
   });
   const Element = component;

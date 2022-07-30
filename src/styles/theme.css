@@ -71,6 +71,18 @@
   --color-error-2: #ffbdbd;
   --color-error-1: #ffe3e3;
 
+  /* Colors - Success */
+  --color-success-10: #014d40;
+  --color-success-9: #0c6b58;
+  --color-success-8: #147d64;
+  --color-success-7: #199473;
+  --color-success-6: #27ab83;
+  --color-success-5: #3ebd93;
+  --color-success-4: #65d6ad;
+  --color-success-3: #8eedc7;
+  --color-success-2: #c6f7e2;
+  --color-success-1: #effcf6;
+
   /* Font Sizes */
   --font-size-1: 12px;
   --font-size-2: 14px;

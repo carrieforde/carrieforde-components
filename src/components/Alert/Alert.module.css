@@ -1,0 +1,49 @@
+:root {
+  --alert-background: var(--color-neutral-1);
+  --alert-color: var(--color-neutral-8);
+
+  /* Info */
+  --alert-background-info: var(--color-info-1);
+  --alert-color-info: var(--color-info-10);
+
+  /* Success */
+  --alert-background-success: var(--color-success-1);
+  --alert-color-success: var(--color-success-10);
+
+  /* Warning */
+  --alert-background-warning: var(--color-warning-1);
+  --alert-color-warning: var(--color-warning-10);
+
+  /* Error */
+  --alert-background-error: var(--color-error-1);
+  --alert-color-error: var(--color-error-10);
+}
+
+.alert {
+  background-color: var(--alert-background);
+  border-radius: 4px;
+  color: var(--alert-color);
+  margin-bottom: var(--size-6);
+  margin-top: var(--size-6);
+  padding: var(--size-3) var(--size-5);
+}
+
+.info {
+  --alert-background: var(--alert-background-info);
+  --alert-color: var(--alert-color-info);
+}
+
+.success {
+  --alert-background: var(--alert-background-success);
+  --alert-color: var(--alert-color-success);
+}
+
+.warning {
+  --alert-background: var(--alert-background-warning);
+  --alert-color: var(--alert-color-warning);
+}
+
+.error {
+  --alert-background: var(--alert-background-error);
+  --alert-color: var(--alert-color-error);
+}
