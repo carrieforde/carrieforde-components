@@ -8,8 +8,11 @@ type ButtonProps = {
 } & HTMLProps<HTMLButtonElement>;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = "text", color = "primary", children, ...props }, ref) => {
-    const classes = cn(s.button, {
+  (
+    { variant = "text", color = "primary", className, children, ...props },
+    ref
+  ) => {
+    const classes = cn(s.button, className, {
       [s[variant]]: !!variant,
     });
 
@@ -20,7 +23,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     } as CSSProperties;
 
     return (
-      <button ref={ref} style={colors} className={classes} {...props}>
+      <button {...props} ref={ref} style={colors} className={classes}>
         {children}
       </button>
     );
