@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { ComponentTheme } from "../../../theme";
 
 export type FormControlProps = {
   split?: boolean;
@@ -7,7 +6,7 @@ export type FormControlProps = {
 
 export const FormControl = styled("div")<FormControlProps>(
   ({ theme, split }) => {
-    const { spacing } = theme as ComponentTheme;
+    const { spacing } = theme;
     return {
       flexBasis: "100%",
 

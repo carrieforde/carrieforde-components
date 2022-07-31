@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
-import { ComponentTheme } from "../../../theme";
 
 export const BaseForm = styled("form")(({ theme }) => {
-  const { spacing } = theme as ComponentTheme;
+  const { spacing } = theme;
 
   return {
     display: "flex",
@@ -12,7 +11,7 @@ export const BaseForm = styled("form")(({ theme }) => {
 });
 
 export const FormActions = styled("div")(({ theme }) => {
-  const { spacing } = theme as ComponentTheme;
+  const { spacing } = theme;
 
   return {
     display: "flex",

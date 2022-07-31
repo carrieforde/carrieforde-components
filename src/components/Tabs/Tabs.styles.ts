@@ -1,10 +1,8 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { ComponentTheme } from "../../theme";
 import { BaseButton, BaseButtonProps } from "../Button/Button.styles";
 
 export const BaseTabs = styled("div")(({ theme }) => {
-  const { spacing } = theme as ComponentTheme;
+  const { spacing } = theme;
 
   return {
     marginTop: spacing(4),
@@ -12,7 +10,7 @@ export const BaseTabs = styled("div")(({ theme }) => {
 });
 
 export const BaseTabList = styled("div")(({ theme }) => {
-  const { palette, spacing } = theme as ComponentTheme;
+  const { palette, spacing } = theme;
 
   return {
     display: "flex",
@@ -43,7 +41,7 @@ export type BaseTabButtonProps = {
 
 export const BaseTabButton = styled(BaseButton)<BaseTabButtonProps>(
   ({ theme, active }) => {
-    const { fontSize, palette, spacing } = theme as ComponentTheme;
+    const { fontSize, palette, spacing } = theme;
 
     return {
       color: palette.default[800],
@@ -68,7 +66,7 @@ export const BaseTabButton = styled(BaseButton)<BaseTabButtonProps>(
 );
 
 export const BaseTabPanel = styled("div")(({ theme }) => {
-  const { spacing } = theme as ComponentTheme;
+  const { spacing } = theme;
 
   return {
     marginTop: spacing(4),

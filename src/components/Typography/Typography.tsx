@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  HTMLProps,
-  ReactElement,
-  ReactNode,
-  Ref,
-} from "react";
+import React, { forwardRef, ReactElement } from "react";
 import {
   BaseBody1,
   BaseBody2,
@@ -12,6 +6,7 @@ import {
   BaseSubtitle,
   BaseTitle,
   BaseTypography,
+  BaseTypographyProps,
 } from "./Typography.styles";
 
 type TypographyVariant = "title" | "subtitle" | "body1" | "body2" | "overline";
@@ -28,7 +23,7 @@ type TypographyComponent =
   | "label"
   | "a";
 
-type TypographyElement =
+export type TypographyElement =
   | HTMLParagraphElement
   | HTMLHeadingElement
   | HTMLSpanElement
@@ -36,11 +31,9 @@ type TypographyElement =
   | HTMLAnchorElement;
 
 type TypographyProps = {
-  children: ReactNode;
   component?: TypographyComponent;
   variant?: TypographyVariant;
-  ref?: Ref<TypographyElement>;
-} & HTMLProps<TypographyElement>;
+} & BaseTypographyProps;
 
 function getTypographyVariant({
   variant,
@@ -88,18 +81,10 @@ export const Typography = forwardRef<TypographyElement, TypographyProps>(
       return getTypographyVariant({ children, component, variant, ref });
     }
 
-    return <BaseTypography as={component}>{children}</BaseTypography>;
+    return (
+      <BaseTypography as={component} ref={ref}>
+        {children}
+      </BaseTypography>
+    );
   }
 );
-
-// export const Typography: React.FC<TypographyProps> = ({
-//   children,
-//   component,
-//   variant,
-// }) => {
-//   if (variant) {
-//     return getTypographyVariant({ children, component, variant });
-//   }
-
-//   return <BaseTypography as={component}>{children}</BaseTypography>;
-// };

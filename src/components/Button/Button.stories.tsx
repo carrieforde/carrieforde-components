@@ -1,17 +1,25 @@
-import { Meta } from "@storybook/react";
+import styled from "@emotion/styled";
+import { Meta, Story } from "@storybook/react";
 import React from "react";
 import { Color } from "../../theme";
-import { Button } from "./Button";
+import { capitalize } from "../../utilities";
+import { Button, ButtonProps } from "./Button";
+
+const Wrapper = styled("div")(({ theme }) => ({
+  display: "flex",
+  gap: theme.spacing(2),
+}));
 
 export default {
   title: "Button",
+  decorators: [
+    (Story) => (
+      <Wrapper>
+        <Story />
+      </Wrapper>
+    ),
+  ],
 } as Meta;
-
-function capitalize(text: string) {
-  return [text.charAt(0).toUpperCase(), text.substring(1, text.length)].join(
-    ""
-  );
-}
 
 const colors: Color[] = [
   "default",
@@ -23,30 +31,30 @@ const colors: Color[] = [
   "success",
 ];
 
-export const TextButton = () => (
-  <div>
+const Template: Story<ButtonProps> = ({ ref, ...args }) => (
+  <>
     {colors.map((color) => (
-      <Button color={color}>{capitalize(color)}</Button>
-    ))}
-  </div>
-);
-
-export const OutlineButton = () => (
-  <div>
-    {colors.map((color) => (
-      <Button variant="outline" color={color}>
+      <Button color={color} {...args}>
         {capitalize(color)}
       </Button>
     ))}
-  </div>
+  </>
 );
 
-export const FilledButton = () => (
-  <div>
-    {colors.map((color) => (
-      <Button variant="filled" color={color}>
-        {capitalize(color)}
-      </Button>
-    ))}
-  </div>
-);
+export const TextButton = Template.bind({});
+export const OutlineButton = Template.bind({});
+export const FilledButton = Template.bind({});
+export const Link = Template.bind({});
+
+OutlineButton.args = {
+  variant: "outline",
+};
+
+FilledButton.args = {
+  variant: "filled",
+};
+
+Link.args = {
+  component: "a",
+  to: "#",
+};

@@ -1,23 +1,18 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { FC, HTMLProps, ReactNode } from "react";
-import { ComponentTheme } from "../../theme";
+import { HTMLProps, ReactNode, Ref } from "react";
+import { TypographyElement } from "./Typography";
 
-type BaseTypographyProps = {
+export type BaseTypographyProps = {
   children: ReactNode;
-} & HTMLProps<HTMLElement>;
+  ref?: Ref<TypographyElement>;
+} & HTMLProps<TypographyElement>;
 
-export type TypographyProps = {
-  component?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
-  variant?: "title" | "subtitle";
-} & BaseTypographyProps;
-
-export const BaseTypography = styled("p")({
+export const BaseTypography = styled("p")<BaseTypographyProps>({
   margin: 0,
 });
 
 export const BaseTitle = styled(BaseTypography)(({ theme }) => {
-  const { fontSize, palette } = theme as ComponentTheme;
+  const { fontSize, palette } = theme;
 
   return {
     color: palette.default[500],
@@ -32,7 +27,7 @@ export const BaseTitle = styled(BaseTypography)(({ theme }) => {
 });
 
 export const BaseSubtitle = styled(BaseTypography)(({ theme }) => {
-  const { fontSize, spacing } = theme as ComponentTheme;
+  const { fontSize, spacing } = theme;
 
   return {
     fontSize: fontSize(4),
@@ -47,7 +42,7 @@ export const BaseSubtitle = styled(BaseTypography)(({ theme }) => {
 });
 
 export const BaseBody1 = styled(BaseTypography)(({ theme }) => {
-  const { fontSize } = theme as ComponentTheme;
+  const { fontSize } = theme;
 
   return {
     fontSize: fontSize(18),
@@ -56,7 +51,7 @@ export const BaseBody1 = styled(BaseTypography)(({ theme }) => {
 });
 
 export const BaseBody2 = styled(BaseTypography)(({ theme }) => {
-  const { fontSize, spacing } = theme as ComponentTheme;
+  const { fontSize, spacing } = theme;
 
   return {
     fontSize: fontSize(14),
@@ -67,7 +62,7 @@ export const BaseBody2 = styled(BaseTypography)(({ theme }) => {
 });
 
 export const BaseOverline = styled(BaseTypography)(({ theme }) => {
-  const { fontSize, spacing } = theme as ComponentTheme;
+  const { fontSize, spacing } = theme;
 
   return {
     display: "inline-block",

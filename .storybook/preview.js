@@ -1,12 +1,9 @@
 import React from "react";
-import { ThemeProvider } from "@emotion/react";
-import { buildTheme } from "../src/theme";
-
-const theme = buildTheme();
+import { ThemeProvider } from "../src/components";
 
 export const decorators = [
   (Story) => (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider>
       <Story />
     </ThemeProvider>
   ),

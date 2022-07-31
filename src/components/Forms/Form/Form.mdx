@@ -1,33 +1,12 @@
-import { Form as LibForm } from "./Form";
-import React from "react";
-import { ControlledInput } from "../Input/Input";
-import { Button } from "../../Button/Button";
-import Doc from "./Form.mdx";
-import { Meta } from "@storybook/react";
-import styled from "@emotion/styled";
+# Form
 
-const Wrapper = styled("div")({
-  maxWidth: "100%",
-  width: "650px",
-});
+Using the `Form` component and the included Controlled form Elements makes building forms quick and easy, and does not required importing an external third-party library such as Formik or React Hook Form.
 
-export default {
-  title: "Forms/Form",
-  component: LibForm,
-  parameters: {
-    docs: {
-      page: Doc,
-    },
-  },
-  decorators: [
-    (Story) => (
-      <Wrapper>
-        <Story />
-      </Wrapper>
-    ),
-  ],
-} as Meta;
+Under the hood, we use React Context to manage form state, which is automatically hooked up to our controlled form elements via our `useField` hook.
 
+When using Typescript in your project, we recommend starting by defining an interface for your form's fields:
+
+```ts
 interface UserRegistrationFormValues {
   firstName: string;
   lastName: string;
@@ -35,7 +14,11 @@ interface UserRegistrationFormValues {
   password: string;
   confirmPassword: string;
 }
+```
 
+Then, create a default state for your form:
+
+```ts
 const defaultFormValues: UserRegistrationFormValues = {
   firstName: "",
   lastName: "",
@@ -43,15 +26,18 @@ const defaultFormValues: UserRegistrationFormValues = {
   password: "",
   confirmPassword: "",
 };
+```
 
-export const Form = () => {
+You can see that we used your field interface here to add some type safety to our default form values. Now we can build the form with our React components.
+
+```tsx
+export const UserRegistrationForm = () => {
   const handleSubmit = (values: UserRegistrationFormValues) => {
     // Call function to map / transform form values before passing to API.
-    console.log(values);
   };
 
   return (
-    <LibForm
+    <Form
       initialValues={defaultFormValues}
       handleSubmit={handleSubmit}
       actions={
@@ -68,6 +54,7 @@ export const Form = () => {
       <ControlledInput name="email" label="Email Address" />
       <ControlledInput name="password" label="Password" />
       <ControlledInput name="confirmPassword" label="Confirm Password" />
-    </LibForm>
+    </Form>
   );
 };
+```

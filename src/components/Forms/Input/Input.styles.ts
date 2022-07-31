@@ -1,11 +1,10 @@
 import styled from "@emotion/styled";
 import { HTMLProps } from "react";
-import { ComponentTheme } from "../../../theme";
 
 export type BaseInputProps = HTMLProps<HTMLInputElement>;
 
 export const BaseInput = styled("input")<BaseInputProps>(({ theme }) => {
-  const { borderRadius, palette, fonts, spacing } = theme as ComponentTheme;
+  const { borderRadius, palette, fonts, spacing } = theme;
 
   return {
     border: "1px solid",

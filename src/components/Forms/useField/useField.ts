@@ -1,9 +1,9 @@
 import { ChangeEvent } from "react";
 import { FormValues, useForm } from "../Form/Form";
 
-export const useField = (name: string) => {
+export const useField = <T>(name: string) => {
   const { values, setValues } = useForm();
-  const value = values[name] as string;
+  const value: T = (values as Record<any, any>)[name];
 
   if (!setValues) {
     throw new Error("useField must be used within a Form component!");
@@ -18,7 +18,7 @@ export const useField = (name: string) => {
 
     const { name, value } = event.target;
 
-    setValues((prevValues: FormValues) => ({
+    setValues((prevValues: FormValues<Record<any, any>>) => ({
       ...prevValues,
       [name]: value,
     }));

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { HTMLProps } from "react";
-import { Color, ComponentTheme } from "../../theme";
+import { Color } from "../../theme";
 
 export type BaseAlertProps = {
   variant?: Omit<Color, "primary" | "secondary">;
@@ -8,7 +8,7 @@ export type BaseAlertProps = {
 
 export const BaseAlert = styled("div")<BaseAlertProps>(
   ({ theme, variant = "default" }) => {
-    const { borderRadius, palette, spacing } = theme as ComponentTheme;
+    const { borderRadius, palette, spacing } = theme;
     const { light, dark } = palette[variant as Color];
 
     return {

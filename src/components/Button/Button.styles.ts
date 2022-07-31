@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { HTMLProps } from "react";
-import { Color, ComponentTheme } from "../../theme";
+import { Color } from "../../theme";
 
 export type BaseButtonProps = {
   color?: Color;
@@ -8,7 +8,7 @@ export type BaseButtonProps = {
 
 export const BaseButton = styled("button")<BaseButtonProps>(
   ({ theme, color }) => {
-    const { palette, fonts, fontSize, spacing } = theme as ComponentTheme;
+    const { palette, fonts, fontSize, spacing } = theme;
     const { main } = palette[color ?? "default"];
 
     return {
@@ -17,10 +17,12 @@ export const BaseButton = styled("button")<BaseButtonProps>(
       border: 0,
       borderRadius: "4px",
       color: main,
+      cursor: "pointer",
       fontFamily: fonts.body,
-      fontSize: fontSize(16),
+      fontSize: fontSize(14),
       fontWeight: 600,
       padding: `${spacing(1)} ${spacing(2)}`,
+      textDecoration: "none",
       transition: "color 0.3s ease, background-color 0.3s ease",
 
       "&:hover": {
@@ -32,7 +34,7 @@ export const BaseButton = styled("button")<BaseButtonProps>(
 
 export const OutlineButton = styled(BaseButton)<BaseButtonProps>(
   ({ theme, color }) => {
-    const { palette } = theme as ComponentTheme;
+    const { palette } = theme;
     const { main, contrast } = palette[color ?? "default"];
 
     return {
@@ -49,7 +51,7 @@ export const OutlineButton = styled(BaseButton)<BaseButtonProps>(
 
 export const FilledButton = styled(BaseButton)<BaseButtonProps>(
   ({ theme, color }) => {
-    const { palette } = theme as ComponentTheme;
+    const { palette } = theme;
     const { main, contrast } = palette[color ?? "primary"];
 
     return {

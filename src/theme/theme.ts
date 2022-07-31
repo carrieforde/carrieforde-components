@@ -1,21 +1,96 @@
-import { Theme } from "@emotion/react";
+export type Color =
+  | "default"
+  | "primary"
+  | "secondary"
+  | "info"
+  | "success"
+  | "warning"
+  | "error";
 
-export function buildTheme(
-  baseFontSize: number = 18,
-  defaultTextColor: string = "#334e68"
-) {
+export type ColorValues = {
+  main: string;
+  contrast: string;
+  light: string;
+  dark: string;
+  50: string;
+  100: string;
+  200: string;
+  300: string;
+  400: string;
+  500: string;
+  600: string;
+  700: string;
+  800: string;
+  900: string;
+};
+
+export type Palette = Record<Color, ColorValues>;
+
+export type Theme = {
+  borderRadius: string;
+  htmlFontSize: number;
+  fontSize: (size: number) => string;
+  spacing: (size: number) => string;
+  palette: Palette;
+  zIndex?: Record<string, number>;
+  fonts: {
+    body: string;
+    [x: string]: string;
+  };
+};
+
+export const baseFontSize = 18;
+export const baseSpacingSize = 8;
+export const baseDarkTextColor = "#334e68";
+export const baseLightTextColor = "#fff";
+
+export function pxToRem(size: number, baseSize: number = baseFontSize) {
+  return `${size / baseSize}rem`;
+}
+
+export function pxToEm(size: number, parentSize: number) {
+  return `${size / parentSize}em`;
+}
+
+export function getSpacing(size: number, baseSize: number = baseSpacingSize) {
+  return `${size * baseSize}px`;
+}
+
+export type CustomThemeArgs = {
+  htmlFontSize?: number;
+  spacingSize?: number;
+  defaultDarkTextColor?: string;
+  defaultLightTextColor?: string;
+};
+
+export const defaultThemeArgs = {
+  htmlFontSize: baseFontSize,
+  spacingSize: baseSpacingSize,
+  defaultDarkTextColor: baseDarkTextColor,
+  defaultLightTextColor: baseLightTextColor,
+};
+
+export function buildCustomTheme(args?: CustomThemeArgs): Theme {
+  const {
+    htmlFontSize,
+    spacingSize,
+    defaultDarkTextColor,
+    defaultLightTextColor,
+  } = { ...defaultThemeArgs, ...args };
+
   return {
     borderRadius: "4px",
-    fontSize: (size: number) => `${size / baseFontSize}rem`,
-    spacing: (size: number) => `${size * 8}px`,
+    htmlFontSize,
+    fontSize: (size: number) => pxToRem(size, htmlFontSize),
+    spacing: (size: number) => getSpacing(size, spacingSize),
     fonts: {
       body: "'Libre Franklin', sans-serif",
       monospace: "'IBM Plex Mono', monospace",
     },
     palette: {
       default: {
-        main: defaultTextColor,
-        contrast: "#fff",
+        main: defaultDarkTextColor,
+        contrast: defaultLightTextColor,
         light: "#f0f4f8",
         dark: "#243b53",
         50: "#f0f4f8",
@@ -31,7 +106,7 @@ export function buildTheme(
       },
       primary: {
         main: "#3525e6",
-        contrast: "#fff",
+        contrast: defaultLightTextColor,
         light: "#e6e6ff",
         dark: "#1d0ebe",
         50: "#e6e6ff",
@@ -47,7 +122,7 @@ export function buildTheme(
       },
       secondary: {
         main: "#27ab83",
-        contrast: "#fff",
+        contrast: defaultLightTextColor,
         light: "#effcf6",
         dark: "#014d40",
         50: "#effcf6",
@@ -63,7 +138,7 @@ export function buildTheme(
       },
       info: {
         main: "#1992d4",
-        contrast: "#fff",
+        contrast: defaultLightTextColor,
         light: "#e3f8ff",
         dark: "#035388",
         50: "#e3f8ff",
@@ -79,7 +154,7 @@ export function buildTheme(
       },
       error: {
         main: "#ab091e",
-        contrast: "#fff",
+        contrast: defaultLightTextColor,
         light: "#ffe3e3",
         dark: "#610316",
         50: "#ffe3e3",
@@ -95,7 +170,7 @@ export function buildTheme(
       },
       warning: {
         main: "#f7c948",
-        contrast: defaultTextColor,
+        contrast: defaultDarkTextColor,
         light: "#fffbea",
         dark: "#8d2b0b",
         50: "#fffbea",
@@ -129,30 +204,4 @@ export function buildTheme(
   };
 }
 
-export type ComponentTheme = ReturnType<typeof buildTheme> & Theme;
-
-export type Color =
-  | "default"
-  | "primary"
-  | "secondary"
-  | "info"
-  | "success"
-  | "warning"
-  | "error";
-
-export type Palette = {
-  main: string;
-  contrast: string;
-  light: string;
-  dark: string;
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
-};
+export const theme = buildCustomTheme();

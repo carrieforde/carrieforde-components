@@ -1,21 +1,12 @@
-import React, { forwardRef, HTMLProps, Ref } from "react";
-import { Typography } from "../../Typography/Typography";
-import { useField } from "../useField/useField";
-import styles from "./Input.module.css";
-import cn from "classnames";
-import { BaseInput } from "./Input.styles";
+import React, { HTMLProps, Ref } from "react";
 import { FormControl } from "../FormControl/FormControl";
 import { Label } from "../Label/Label";
+import { useField } from "../useField/useField";
+import { BaseInput } from "./Input.styles";
 
 // https://stackoverflow.com/questions/54654303/using-a-forwardref-component-with-children-in-typescript
 
 type BaseInputProps = HTMLProps<HTMLInputElement>;
-
-// export const BaseInput = forwardRef<HTMLInputElement, BaseInputProps>(
-//   (props, ref) => {
-//     return <input ref={ref} className={styles.input} {...props} />;
-//   }
-// );
 
 type InputProps = {
   ref?: Ref<HTMLInputElement>;
@@ -36,19 +27,6 @@ export const Input: React.FC<InputProps> = ({
     <BaseInput ref={ref} name={name} {...props} />
   </FormControl>
 );
-
-// {
-//   const wrapperClasses = cn(styles.wrapper, { [styles.split]: !!split });
-
-//   return (
-//     <label htmlFor={name} className={wrapperClasses}>
-//       <Typography component="span" variant="label">
-//         {label}
-//       </Typography>
-//       <BaseInput ref={ref} name={name} {...props} />
-//     </label>
-//   );
-// };
 
 export type ControlledInputProps = InputProps;
 
